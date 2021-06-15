@@ -1,0 +1,19 @@
+
+@import "./vars.scss";
+
+.brand-color-text {
+  color: $brand-color;
+}
+
+.primary-color-text {
+  color: $brand-color;
+}
+
+.secondary-color-text {
+  color: $brand-color;
+}
+
+.custom-animated-box:hover {
+  border-width: 3px;
+  cursor: pointer;
+}
