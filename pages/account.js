@@ -33,8 +33,8 @@ export default function AccountPage () {
   return (
     <Layout secure>
       <Section title='Account page' small>
-        <Text> Acount address: {account.address} </Text>
-        <Text> Account ID: {account.id} </Text>
+        <Text> Acount address: {account?.address} </Text>
+        <Text> Account ID: {account?.id} </Text>
       </Section>
     </Layout>
   )
