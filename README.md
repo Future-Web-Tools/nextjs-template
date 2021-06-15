@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project.
+This is a Web3 dapp starter project. Try **[live demo here](https://future-web-nextjs.herokuapp.com/)**.
 
 ## Getting Started
 
