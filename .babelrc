@@ -4,7 +4,7 @@
       "next/babel",
       {
         "preset-env": {},
-        "styled-jsx": {},
+        "styled-jsx": {}
       }
     ]
   ],
