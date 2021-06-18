@@ -9,7 +9,7 @@ import Section from '@components/section'
 import client from '@lib/shared/client'
 
 export default function AccountPage () {
-  const { authToken } = useSelector(state => state.auth)
+  const { authToken, persona } = useSelector(state => state.auth)
   const [account, setAccount] = useState('')
 
   const [, setToast] = useToasts()
@@ -33,8 +33,13 @@ export default function AccountPage () {
   return (
     <Layout secure>
       <Section title='Account page' small>
-        <Text> Acount address: {account?.address} </Text>
+        <Text> Acount address: <b>{account?.address}</b> </Text>
         <Text> Account ID: {account?.id} </Text>
+        {persona?.title && <Text> personas username: <b>{persona.title}</b> </Text>}
+
+        {!persona?.title && (
+          <Text> No persona! <a href='https://personas.space' target='_blank' rel='noreferrer'> <b>Create one here</b>.</a> </Text>
+        )}
       </Section>
     </Layout>
   )

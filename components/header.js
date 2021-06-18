@@ -1,5 +1,5 @@
 
-import { Button, Text } from '@geist-ui/react'
+import { Button, Text, Popover } from '@geist-ui/react'
 import { Sun as SunIcon, Moon as MoonIcon } from 'react-feather'
 
 import Link from 'next/link'
@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import { useSelector, useDispatch } from 'react-redux'
 
 import Login from '@components/login'
+import Avatar from '@components/avatar'
 
 import storage from '@lib/front/storage'
 
@@ -15,7 +16,7 @@ export default function Header () {
   const router = useRouter()
 
   const theme = useSelector(state => state.theme)
-  const { address } = useSelector(state => state.auth)
+  const { address, persona } = useSelector(state => state.auth)
 
   const changeTheme = () => dispatch({ type: 'THEME', theme: theme === 'light' ? 'dark' : 'light' })
   const goToAccountPage = () => router.push('/account')
@@ -23,6 +24,28 @@ export default function Header () {
   const logout = async () => {
     await storage.remove('AUTH')
     dispatch({ type: 'LOGOUT', auth: '' })
+  }
+
+  const content = () => {
+    const name = persona?.title ? `@${persona.title}` : `${address.substring(0, 14)}...`
+
+    return (
+      <>
+        <Popover.Item title>
+          <span> {name} </span>
+        </Popover.Item>
+        <Popover.Item>
+          <Link href='/account'><a>Account</a></Link>
+        </Popover.Item>
+        <Popover.Item>
+          <a href={`http://personas.space/charm/${address}`} target='_blank' rel='noreferrer'>Charm profile</a>
+        </Popover.Item>
+        <Popover.Item line />
+        <Popover.Item onClick={logout}>
+          <a>Logout</a>
+        </Popover.Item>
+      </>
+    )
   }
 
   return (
@@ -45,14 +68,16 @@ export default function Header () {
               Account page
             </Button>
 
-            <div style={{ marginRight: '1rem' }}>
+            {address && (
+              <Popover content={content}>
+                <Avatar address={address} />
+              </Popover>
+            )}
 
-              {address
-                ? (<Button onClick={logout} auto>Logout ({`${address.substring(0, 8)}...`}) </Button>)
-                : (<Login />)}
-            </div>
+            {!address && <div> <Login /> </div>}
 
             <Button
+              style={{ marginLeft: '1rem' }}
               iconRight={theme === 'dark' ? <SunIcon /> : <MoonIcon />}
               auto
               onClick={changeTheme}

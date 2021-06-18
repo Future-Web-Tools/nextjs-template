@@ -38,8 +38,13 @@ export default function Login () {
         const auth = result.data
 
         if (auth.authToken) {
-          await storage.set('AUTH', auth)
+          const personaResult = await client(`https://data.prs.onl/persona/${address}.json`)
 
+          if (personaResult.data.title) {
+            auth.persona = personaResult.data
+          }
+
+          await storage.set('AUTH', auth)
           dispatch({ type: 'AUTH', auth })
 
           setToast({ text: 'Login successful', type: 'success' })
