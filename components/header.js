@@ -27,7 +27,7 @@ export default function Header () {
   }
 
   const content = () => {
-    const name = persona?.title ? `@${persona.title}` : `${address.substring(0, 14)}...`
+    const name = persona?.namespace ? `@${persona.namespace}` : `${address.substring(0, 14)}...`
 
     return (
       <>

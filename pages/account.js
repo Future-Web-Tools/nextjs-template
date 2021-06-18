@@ -35,9 +35,10 @@ export default function AccountPage () {
       <Section title='Account page' small>
         <Text> Acount address: <b>{account?.address}</b> </Text>
         <Text> Account ID: {account?.id} </Text>
-        {persona?.title && <Text> personas username: <b>{persona.title}</b> </Text>}
+        {persona?.title && <Text> personas title: <b>{persona.title}</b> </Text>}
+        {persona?.namespace && <Text> personas username: <b>{persona.namespace}</b> </Text>}
 
-        {!persona?.title && (
+        {!persona?.namespace && (
           <Text> No persona! <a href='https://personas.space' target='_blank' rel='noreferrer'> <b>Create one here</b>.</a> </Text>
         )}
       </Section>
