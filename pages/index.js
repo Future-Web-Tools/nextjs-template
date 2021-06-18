@@ -76,7 +76,7 @@ export default function IndexPage () {
     }
   ]
 
-  const goToDocs = () => window.open('https://github.com/Future-Web-Tools/nextjs-template')
+  const goToDocs = () => window.open('https://github.com/Future-Web-Tools/nextjs-web3-template')
 
   return (
     <Layout>
