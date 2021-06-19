@@ -6,6 +6,8 @@ import { Button, useToasts } from '@geist-ui/react'
 import client from '@lib/shared/client'
 import storage from '@lib/front/storage'
 
+import { get } from '@personas/client'
+
 import { providerConnect, providerSign } from '@config/provider'
 
 export default function Login () {
@@ -38,7 +40,7 @@ export default function Login () {
         const auth = result.data
 
         if (auth.authToken) {
-          const personaResult = await client(`https://data.prs.onl/persona/${address}.json`)
+          const personaResult = await client(get.urls(address).profile)
 
           if (personaResult.data.title) {
             auth.persona = personaResult.data

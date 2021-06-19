@@ -1,9 +1,11 @@
 
 // learn more about personas: https://docs.personas.space/
 
+import { get } from '@personas/client'
+
 export default function Avatar ({ address }) {
-  const placeholderAvatar = 'https://img.prs.onl/avatar/placeholders/small.png'
-  const imgSrc = `https://img.prs.onl/avatar/small/${address}.png`
+  const placeholderAvatar = get.urls().avatar.small
+  const imgSrc = get.urls(address).avatar.small
 
   const onError = e => {
     e.target.onerror = null

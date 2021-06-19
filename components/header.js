@@ -38,7 +38,7 @@ export default function Header () {
           <Link href='/account'><a>Account</a></Link>
         </Popover.Item>
         <Popover.Item>
-          <a href={`http://personas.space/charm/${address}`} target='_blank' rel='noreferrer'>Charm profile</a>
+          <a href={`http://personas.space/address/${address}`} target='_blank' rel='noreferrer'>Charm profile</a>
         </Popover.Item>
         <Popover.Item line />
         <Popover.Item onClick={logout}>
