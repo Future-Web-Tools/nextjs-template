@@ -53,11 +53,8 @@ export default function Login () {
         } else {
           throw new Error('')
         }
-
-        setLoginBusy(false)
       } catch (err) {
         console.error(err)
-        setLoginBusy(false)
         setToast({ text: 'Sorry, an error occurred', type: 'warning' })
 
         if (err.message === 'Invalid chain') {
@@ -66,6 +63,7 @@ export default function Login () {
           window.alert('Sorry an error occurred')
         }
       } finally {
+        setLoginBusy(false)
         dispatch({ type: 'AUTH', authReady: true })
       }
     }

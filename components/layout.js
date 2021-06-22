@@ -12,7 +12,10 @@ import Section from '@components/section'
 import { get, remove } from '@lib/front/storage'
 import { providerConnect } from '@config/provider'
 
+import { LOGIN_CHECK_FREQUENCY } from '@config/front'
+
 const expiredDate = (expiresIn) => new Date(expiresIn * 1000) < new Date()
+
 const defaultMeta = {
   title: 'Site template - Future Web nextjs',
   description: 'Future Web next js.'
@@ -45,15 +48,28 @@ const Layout = ({ children, secure, meta = defaultMeta }) => {
     }
   }
 
+  const validateLogin = async () => {
+    const expired = expiredDate(expiresIn)
+
+    if (expired) {
+      dispatch({ type: 'AUTH', auth: {} })
+      await remove('AUTH')
+    }
+  }
+
   useEffect(() => {
-    readyAuth()
-  }, [])
+    setInterval(validateLogin, LOGIN_CHECK_FREQUENCY)
+  }, [expiresIn])
 
   useEffect(() => {
     if (address && !window.globalProvider) {
       providerConnect() // .then(data => {})
     }
   }, [address])
+
+  useEffect(() => {
+    readyAuth()
+  }, [])
 
   return (
     <div>
