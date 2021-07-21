@@ -3,12 +3,18 @@ import Web3 from 'web3'
 
 import abi from '@config/abi'
 import { CONTRACT_ADDRESS, SUPPORTED_NETWORK_CHAIN_IDS } from '@config/shared'
+import storage from '@lib/front/storage'
 let web3
 
 export const providerConnect = async () => {
   return new Promise(async (resolve, reject) => {
     try {
       if (window.ethereum) {
+        window.ethereum.on('accountsChanged', async (accounts) => {
+          await storage.remove('AUTH')
+          window.location.reload()
+        })
+
         web3 = new Web3(window.ethereum)
 
         if (window.ethereum.enable) {
