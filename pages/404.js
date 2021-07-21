@@ -1,5 +1,4 @@
 
-import { Button } from '@geist-ui/react'
 import Section from '@components/section'
 
 import { useRouter } from 'next/router'
@@ -14,7 +13,7 @@ export default function MissingPage () {
       <div className='justified'>
         <div />
 
-        <Button onClick={goHome}> Go home</Button>
+        <button onClick={goHome}> Go home</button>
       </div>
     </Section>
   )

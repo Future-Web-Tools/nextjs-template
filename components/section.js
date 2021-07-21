@@ -1,6 +1,4 @@
 
-import { Text } from '@geist-ui/react'
-
 export default function Section (props) {
   const { title, subTitle, small, medium, free, children } = props
 
@@ -13,10 +11,10 @@ export default function Section (props) {
               <div className='justified' style={{ marginBottom: '1rem' }}>
 
                 <div>
-                  {title && (<Text h2>{title}</Text>)}
+                  {title && (<h4>{title}</h4>)}
 
                   {subTitle && <div style={{ margin: '1rem 0' }}>
-                    <Text small>{subTitle}</Text>
+                    <div>{subTitle}</div>
                   </div>}
                 </div>
 

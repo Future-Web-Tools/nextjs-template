@@ -1,15 +1,10 @@
 
-import { GeistProvider, CssBaseline } from '@geist-ui/react'
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 
 export default function Themer ({ children }) {
-  const theme = useSelector((state) => state.theme)
+  // const theme = useSelector((state) => state.theme)
 
   return (
-    <GeistProvider themeType={theme}>
-      <CssBaseline />
-
-      {children}
-    </GeistProvider>
+    <div> {children} </div>
   )
 }

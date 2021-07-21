@@ -3,7 +3,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Head from 'next/head'
-import { Text } from '@geist-ui/react'
 
 import Login from '@components/login'
 import Loader from '@components/loader'
@@ -85,7 +84,7 @@ const Layout = ({ children, secure, meta = defaultMeta }) => {
           ? (
             <Section title='Sorry, login required' small>
               <div>
-                <Text> Please login to continue </Text>
+                <div> Please login to continue </div>
 
                 <div className='justified'>
                   <div />

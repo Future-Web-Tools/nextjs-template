@@ -13,7 +13,6 @@
     "db:s": "npx prisma studio"
   },
   "dependencies": {
-    "@geist-ui/react": "^2.1.5",
     "@personas/client": "^0.2.1",
     "@prisma/client": "^2.24.1",
     "ethereumjs-util": "^7.0.10",

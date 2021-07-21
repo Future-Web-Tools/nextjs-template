@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { Button, useToasts } from '@geist-ui/react'
 import client from '@lib/shared/client'
 import storage from '@lib/front/storage'
 
@@ -12,7 +11,6 @@ import { providerConnect, providerSign } from '@config/provider'
 
 export default function Login () {
   const dispatch = useDispatch()
-  const [, setToast] = useToasts()
 
   const authReady = useSelector((state) => state.authReady)
   const { address } = useSelector((state) => state.auth)
@@ -42,20 +40,17 @@ export default function Login () {
         if (auth.authToken) {
           const personaResult = await client(get.urls(address).profile)
 
-          if (personaResult.data.title) {
+          if (personaResult?.data?.title) {
             auth.persona = personaResult.data
           }
 
           await storage.set('AUTH', auth)
           dispatch({ type: 'AUTH', auth })
-
-          setToast({ text: 'Login successful', type: 'success' })
         } else {
           throw new Error('')
         }
       } catch (err) {
         console.error(err)
-        setToast({ text: 'Sorry, an error occurred', type: 'warning' })
 
         if (err.message === 'Invalid chain') {
           window.alert('Kindly switch your network to a supported network to proceed.')
@@ -71,13 +66,12 @@ export default function Login () {
 
   return (
     <div>
-      <Button
-        auto
+      <button
         onClick={handleLogin}
         disabled={loginBusy || !authReady || !!address}
       >
         Login
-      </Button>
+      </button>
     </div>
   )
 }
